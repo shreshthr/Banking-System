@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // Run the Gradle build using the current directory reference
                 dir('BankingSystem') {
-                    bat 'gradlew.bat clean build'
+                    bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\BankingSystemProject\\BankingSystem\\gradlew.bat clean build'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 // Run the Gradle tests
                 dir('BankingSystem') {
-                    bat 'gradlew.bat test'
+                    bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\BankingSystemProject\\BankingSystem\\gradlew.bat test'
                 }
             }
         }
