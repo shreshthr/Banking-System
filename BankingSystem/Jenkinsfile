@@ -11,15 +11,19 @@ pipeline {
         
         stage('Build') {
             steps {
-                // Run the Gradle build using the Windows batch command
-                bat 'gradlew.bat clean build'
+                // Navigate to BankingSystem directory and run the Gradle build command
+                dir('BankingSystem') {
+                    bat 'gradlew.bat clean build'
+                }
             }
         }
         
         stage('Test') {
             steps {
-                // Run the Gradle test task
-                bat 'gradlew.bat test'
+                // Navigate to BankingSystem directory and run the Gradle test command
+                dir('BankingSystem') {
+                    bat 'gradlew.bat test'
+                }
             }
         }
     }
@@ -27,16 +31,11 @@ pipeline {
     post {
         always {
             // Archive JAR files or other build artifacts
-            archiveArtifacts artifacts: 'build/libs/*.jar', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'BankingSystem/build/libs/*.jar', allowEmptyArchive: true
             
             // Publish JUnit test results for test reporting
-            junit 'build/test-results/test/*.xml'
-        }
-        failure {
-            // Send a notification in case of failure (if configured)
-            mail to: 'your-email@example.com',
-                 subject: "Build Failed in Jenkins Pipeline",
-                 body: "The Jenkins build for the Banking System project has failed. Please review the console output for details."
+            junit 'BankingSystem/build/test-results/test/*.xml'
         }
     }
 }
+
