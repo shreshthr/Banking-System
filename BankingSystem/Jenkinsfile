@@ -28,14 +28,5 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            // Archive JAR files or other build artifacts
-            archiveArtifacts artifacts: 'BankingSystem/build/libs/*.jar', allowEmptyArchive: true
-            
-            // Publish JUnit test results for test reporting
-            junit 'BankingSystem/build/test-results/test/*.xml'
-        }
-    }
 }
 
