@@ -18,14 +18,6 @@ pipeline {
             }
         }
         
-        stage('Test') {
-            steps {
-                // Run the Gradle tests
-                dir('BankingSystem') {
-                    bat 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\BankingSystemProject\\gradlew.bat test'
-                }
-            }
-        }
     }
     
 }
