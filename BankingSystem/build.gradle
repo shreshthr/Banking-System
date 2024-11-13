@@ -1,21 +1,12 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
-}
-
 tasks.withType(Test) {
     reports {
-        junitXml.enabled = true
-        junitXml.destination = file("$buildDir/test-results/test")
-        html.enabled = true
-        html.destination = file("$buildDir/reports/tests")
+        junitXml {
+            required.set(true) // Enables JUnit XML reporting
+            outputLocation.set(file("$buildDir/test-results/test")) // Specifies output directory
+        }
+        html {
+            required.set(true) // Enables HTML test report
+            outputLocation.set(file("$buildDir/reports/tests")) // Specifies output directory
+        }
     }
 }
